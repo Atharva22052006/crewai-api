@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from crewai import Agent, Task, Crew, LLM
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Ensure the API key is set
-os.environ['GEMINI_API_KEY'] = 'AIzaSyBiQlLfzp23CWnPnf91BegFX9DVgJjOqx0'
+os.environ['GEMINI_API_KEY'] = os.getenv('GEMINI_API_KEY')
 llm = LLM(model="gemini/gemini-2.0-flash")
 
 # Define the agents and tasks within the Flask app or import them
@@ -1477,4 +1481,5 @@ def meal_plan_display():
     return render_template('output.html', meal_plan_content=meal_plan_content)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)

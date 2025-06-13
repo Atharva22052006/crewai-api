@@ -2,4 +2,8 @@ flask
 flask-cors
 crewai
 python-dotenv
-gunicorn 
+gunicorn
+google-generativeai
+pydantic
+requests
+litellm
